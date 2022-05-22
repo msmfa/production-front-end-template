@@ -1,17 +1,6 @@
-[中文版](./README-zh.md)
-| [日本語版](./README-ja.md)
-| [한국어](./README-ko.md)
-| [Русский](./README-ru.md)
-| [Português](./README-pt-BR.md)
-| [Italiana](./README-it.md)
 
-[<img src="./images/elsewhen-logo.png" width="180" height="180">](https://www.elsewhen.com/)
+# Project Guidelines &middot;
 
-# Project Guidelines &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-> While developing a new project is like rolling on a green field for you, maintaining it is a potential dark twisted nightmare for someone else.
-> Here's a list of guidelines we've found, written and gathered that (we think) works really well with most JavaScript projects here at [elsewhen](https://www.elsewhen.com).
-> If you want to share a best practice, or think one of these guidelines should be removed, [feel free to share it with us](http://makeapullrequest.com).
 
 <hr>
 
@@ -50,46 +39,21 @@ There are a set of rules to keep in mind:
 
 - Perform work in a feature branch.
 
-  _Why:_
-
-  > Because this way all work is done in isolation on a dedicated branch rather than the main branch. It allows you to submit multiple pull requests without confusion. You can iterate without polluting the master branch with potentially unstable, unfinished code. [read more...](https://www.atlassian.com/git/tutorials/comparing-workflows#feature-branch-workflow)
-
 - Branch out from `develop`
-
-  _Why:_
-
-  > This way, you can make sure that code in master will almost always build without problems, and can be mostly used directly for releases (this might be overkill for some projects).
 
 - Never push into `develop` or `master` branch. Make a Pull Request.
 
-  _Why:_
-
-  > It notifies team members that they have completed a feature. It also enables easy peer-review of the code and dedicates forum for discussing the proposed feature.
-
 - Update your local `develop` branch and do an interactive rebase before pushing your feature and making a Pull Request.
 
-  _Why:_
-
-  > Rebasing will merge in the requested branch (`master` or `develop`) and apply the commits that you have made locally to the top of the history without creating a merge commit (assuming there were no conflicts). Resulting in a nice and clean history. [read more ...](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)
-
 - Resolve potential conflicts while rebasing and before making a Pull Request.
+
 - Delete local and remote feature branches after merging.
 
-  _Why:_
 
-  > It will clutter up your list of branches with dead branches. It ensures you only ever merge the branch back into (`master` or `develop`) once. Feature branches should only exist while the work is still in progress.
 
 - Before making a Pull Request, make sure your feature branch builds successfully and passes all tests (including code style checks).
 
-  _Why:_
-
-  > You are about to add your code to a stable branch. If your feature-branch tests fail, there is a high chance that your destination branch build will fail too. Additionally, you need to apply code style check before making a Pull Request. It aids readability and reduces the chance of formatting fixes being mingled in with actual changes.
-
 - Use [this](./.gitignore) `.gitignore` file.
-
-  _Why:_
-
-  > It already has a list of system files that should not be sent with your code into a remote repository. In addition, it excludes setting folders and files for most used editors, as well as most common dependency folders.
 
 - Protect your `develop` and `master` branch.
 
@@ -209,11 +173,7 @@ Having a good guideline for creating commits and sticking to it makes working wi
 - Use this [template](./README.sample.md) for `README.md`, Feel free to add uncovered sections.
 - For projects with more than one repository, provide links to them in their respective `README.md` files.
 - Keep `README.md` updated as a project evolves.
-- Comment your code. Try to make it as clear as possible what you are intending with each major section.
-- If there is an open discussion on github or stackoverflow about the code or approach you're using, include the link in your comment.
-- Don't use comments as an excuse for a bad code. Keep your code clean.
-- Don't use clean code as an excuse to not comment at all.
-- Keep comments relevant as your code evolves.
+
 
 <a name="environments"></a>
 
@@ -304,33 +264,11 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 ![Github](/images/modules.png)
 
-- Keep track of your currently available packages: e.g., `npm ls --depth=0`. [read more...](https://docs.npmjs.com/cli/ls)
 - See if any of your packages have become unused or irrelevant: `depcheck`. [read more...](https://www.npmjs.com/package/depcheck)
-
-  _Why:_
-
-  > You may include an unused library in your code and increase the production bundle size. Find unused dependencies and get rid of them.
 
 - Before using a dependency, check its download statistics to see if it is heavily used by the community: `npm-stat`. [read more...](https://npm-stat.com/)
 
-  _Why:_
-
-  > More usage mostly means more contributors, which usually means better maintenance, and all of these result in quickly discovered bugs and quickly developed fixes.
-
 - Before using a dependency, check to see if it has a good, mature version release frequency with a large number of maintainers: e.g., `npm view async`. [read more...](https://docs.npmjs.com/cli/view)
-
-  _Why:_
-
-  > Having loads of contributors won't be as effective if maintainers don't merge fixes and patches quickly enough.
-
-- If a less known dependency is needed, discuss it with the team before using it.
-- Always make sure your app works with the latest version of its dependencies without breaking: `npm outdated`. [read more...](https://docs.npmjs.com/cli/outdated)
-
-  _Why:_
-
-  > Dependency updates sometimes contain breaking changes. Always check their release notes when updates show up. Update your dependencies one by one, that makes troubleshooting easier if anything goes wrong. Use a cool tool such as [npm-check-updates](https://github.com/tjunnone/npm-check-updates).
-
-- Check to see if the package has known security vulnerabilities with, e.g., [Snyk](https://snyk.io/test?utm_source=risingstack_blog).
 
 <a name="testing"></a>
 
@@ -338,31 +276,13 @@ Having a good guideline for creating commits and sticking to it makes working wi
 
 ![Testing](/images/testing.png)
 
-- Have a `test` mode environment if needed.
+- Write unit tests for all complex functions. Try and write pure functions so they're easy to test
 
-  _Why:_
-
-  > While sometimes end to end testing in `production` mode might seem enough, there are some exceptions: One example is you may not want to enable analytical information on a 'production' mode and pollute someone's dashboard with test data. The other example is that your API may have rate limits in `production` and blocks your test calls after a certain amount of requests.
+- Include end to end testing
 
 - Place your test files next to the tested modules using `*.test.js` or `*.spec.js` naming convention, like `moduleName.spec.js`.
 
-  _Why:_
 
-  > You don't want to dig through a folder structure to find a unit test. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
-
-- Put your additional test files into a separate test folder to avoid confusion.
-
-  _Why:_
-
-  > Some test files don't particularly relate to any specific implementation file. You have to put it in a folder that is most likely to be found by other developers: `__test__` folder. This name: `__test__` is also standard now and gets picked up by most JavaScript testing frameworks.
-
-- Write testable code, avoid side effects, extract side effects, write pure functions
-
-  _Why:_
-
-  > You want to test a business logic as separate units. You have to "minimize the impact of randomness and nondeterministic processes on the reliability of your code". [read more...](https://medium.com/javascript-scene/tdd-the-rite-way-53c9b46f45e3)
-
-  > A pure function is a function that always returns the same output for the same input. Conversely, an impure function is one that may have side effects or depends on conditions from the outside to produce a value. That makes it less predictable. [read more...](https://hackernoon.com/structure-your-javascript-code-for-testability-9bc93d9c72dc)
 
 - Use a static type checker
 
