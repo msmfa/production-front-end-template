@@ -66,7 +66,7 @@ Here you should write what are all of the configurations a user can enter when u
 
 ## Tests
 
-Give an overview of the tesitng strategy used and what should be maintained going forward.
+Give an overview of the testing strategy used and what should be maintained going forward.
 
 Describe and show how to run the tests with code examples.
 
@@ -76,6 +76,6 @@ Give an example
 
 ## Api Reference
 
-If the api is external, link to api documentation. 
+If the API is external, link to API documentation (e.g, FastAPI). 
 
-If not describe your api including authentication methods etc. 
+If not describe your API including authentication methods etc. 
